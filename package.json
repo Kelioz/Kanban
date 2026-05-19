@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:ci": "vite build",
     "lint": "yarn lint:stylelint && yarn lint:eslint",
     "lint:fix": "yarn lint:stylelint --fix && yarn lint:eslint --fix",
     "lint:stylelint": "stylelint \"**/*.scss\"",
