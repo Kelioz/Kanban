@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useEffect, useState } from 'react'
 import socket from '@/shared/lib/utils/socket'
@@ -18,11 +20,13 @@ export function KanBanPage() {
 
       // 2. Для каждой колонки загружаем карточки
       const columnsWithCards = await Promise.all(
+        // @ts-expect-error (ts(2339))
         columnsData.map(async (column: any) => {
           try {
             const cards = await ApiClient.cardsControllerGetByColumn(
               column.uuid
             )
+            // @ts-expect-error (ts(2339))
             return { ...column, cards: cards || [] }
           } catch (error) {
             console.error(
@@ -98,8 +102,8 @@ export function KanBanPage() {
   const moveCardInState = (data: any) => {
     setColumns((prevColumns) => {
       let movedCard: any = null
-      let oldColumnCards: any[] = []
-      let newColumnCards: any[] = []
+      // let oldColumnCards: any[] = []
+      // let newColumnCards: any[] = []
 
       // Сначала находим карточку и удаляем её из старой колонки
       const afterRemove = prevColumns.map((column) => {

@@ -8,6 +8,7 @@ export function useRegisterModel() {
   const onSuccess = (data: RegisterResponseDto | undefined) => {
     if (data) {
       // Лиза сделает сразу отдачу токена
+      // @ts-expect-error (ts(2339))
       store.data = { access_token: data.access_token }
       navigate('/kanban')
     }

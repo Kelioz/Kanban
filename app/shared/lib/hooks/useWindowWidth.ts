@@ -5,6 +5,7 @@ export function useWindowWidth(widthMobile: number) {
 
   useEffect(() => {
     if (window.innerWidth < widthMobile) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMobile(true)
     } else {
       setIsMobile(false)

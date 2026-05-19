@@ -1,24 +1,24 @@
-interface IUseInterval {
-  startInterval: () => void
-  finishInterval: () => void
-}
+// interface IUseInterval {
+//   startInterval: () => void
+//   finishInterval: () => void
+// }
 
-export default function useInterval(
-  handler: () => void,
-  timeout: number
-): IUseInterval {
-  let intervalId: NodeJS.Timeout
+// export default function useInterval(
+//   handler: () => void,
+//   timeout: number
+// ): IUseInterval {
+//   let intervalId: NodeJS.Timeout
 
-  function startInterval() {
-    intervalId = setInterval(handler, timeout)
-  }
+//   function startInterval() {
+//     intervalId = setInterval(handler, timeout)
+//   }
 
-  function finishInterval() {
-    clearInterval(intervalId)
-  }
+//   function finishInterval() {
+//     clearInterval(intervalId)
+//   }
 
-  return {
-    startInterval,
-    finishInterval,
-  }
-}
+//   return {
+//     startInterval,
+//     finishInterval,
+//   }
+// }
