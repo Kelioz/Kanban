@@ -1,7 +1,7 @@
 import { KanBanPage } from '@/pages/kanban/page'
 import { LoginPage } from '@/pages/login/page'
 import { RegisterPage } from '@/pages/register/page'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 export default function Router() {
   return (
