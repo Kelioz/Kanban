@@ -27,7 +27,7 @@ jobs:
           yarn install
 
       - name: Build
-        run: yarn build
+        run: yarn build:ci
 
       - name: Deploy to gh-pages branch (peaceiris)
         uses: peaceiris/actions-gh-pages@v3
