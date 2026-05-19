@@ -1,0 +1,34 @@
+@use 'variables';
+.root {
+  box-sizing: border-box;
+  padding: 8px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  backdrop-filter: blur(16px);
+  border-radius: 12px;
+  width: 420px;
+  @include variables.screen-tablet-l {
+    width: 100%;
+  }
+
+  & > svg {
+    flex-shrink: 0;
+  }
+
+  &_success {
+    background-color: variables.$toast_success;
+  }
+  &_warning {
+    background-color: variables.$toast_warning;
+  }
+  &_error {
+    background-color: variables.$toast_failure;
+  }
+
+  &__message {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+  }
+}

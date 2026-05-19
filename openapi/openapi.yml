@@ -1,0 +1,503 @@
+openapi: 3.0.0
+paths:
+  /api/auth/register:
+    post:
+      operationId: AuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '201':
+          description: Пользователь успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponseDto'
+        '409':
+          description: Email уже существует
+      summary: Регистрация нового пользователя
+      tags:
+        - auth
+  /api/auth/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: Успешный логин
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseDto'
+        '401':
+          description: Неверные учетные данные
+      summary: Логин пользователя
+      tags:
+        - auth
+  /api/boards:
+    post:
+      operationId: BoardsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBoardDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardResponseDto'
+      security:
+        - bearer: []
+      summary: Создать новую доску
+      tags:
+        - boards
+    get:
+      operationId: BoardsController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Получить все доски пользователя
+      tags:
+        - boards
+  /api/boards/{boardId}:
+    get:
+      operationId: BoardsController_findOne
+      parameters:
+        - name: boardId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Получить одну доску по id
+      tags:
+        - boards
+    put:
+      operationId: BoardsController_update
+      parameters:
+        - name: boardId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBoardDto'
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Обновить доску
+      tags:
+        - boards
+    delete:
+      operationId: BoardsController_delete
+      parameters:
+        - name: boardId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Удалить доску
+      tags:
+        - boards
+  /api/columns:
+    post:
+      operationId: ColumnsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateColumnDto'
+      responses:
+        '201':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - columns
+  /api/columns/board/{boardId}:
+    get:
+      operationId: ColumnsController_getByBoard
+      parameters:
+        - name: boardId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - columns
+  /api/columns/{columnId}:
+    get:
+      operationId: ColumnsController_getOne
+      parameters:
+        - name: columnId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - columns
+    put:
+      operationId: ColumnsController_update
+      parameters:
+        - name: columnId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateColumnDto'
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - columns
+    delete:
+      operationId: ColumnsController_delete
+      parameters:
+        - name: columnId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - columns
+  /api/cards:
+    post:
+      operationId: CardsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCardDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardResponseDto'
+      security:
+        - bearer: []
+      summary: Создать новую карточку
+      tags:
+        - cards
+  /api/cards/column/{columnId}:
+    get:
+      operationId: CardsController_getByColumn
+      parameters:
+        - name: columnId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Получить все карточки колонки
+      tags:
+        - cards
+  /api/cards/{cardId}:
+    get:
+      operationId: CardsController_findOne
+      parameters:
+        - name: cardId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Получить карточку по id
+      tags:
+        - cards
+    put:
+      operationId: CardsController_update
+      parameters:
+        - name: cardId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCardDto'
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Обновить карточку
+      tags:
+        - cards
+    delete:
+      operationId: CardsController_delete
+      parameters:
+        - name: cardId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Удалить карточку
+      tags:
+        - cards
+  /api/cards/{cardId}/move:
+    put:
+      operationId: CardsController_move
+      parameters:
+        - name: cardId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoveCardDto'
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      summary: Переместить карточку
+      tags:
+        - cards
+info:
+  title: Kanban Board API
+  description: API для управления канбан-досками (Trello-клон)
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    RegisterDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@example.com
+          description: Email пользователя
+        password:
+          type: string
+          example: '123456'
+          description: Пароль (мин. 6 символов)
+      required:
+        - email
+        - password
+    RegisterResponseDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        email:
+          type: string
+          example: user@example.com
+      required:
+        - uuid
+        - email
+    LoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@example.com
+        password:
+          type: string
+          example: '123456'
+      required:
+        - email
+        - password
+    LoginResponseDto:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      required:
+        - access_token
+    CreateBoardDto:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Мои задачи
+          description: Название доски
+      required:
+        - title
+    BoardResponseDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        title:
+          type: string
+        userId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - uuid
+        - title
+        - userId
+        - createdAt
+        - updatedAt
+    UpdateBoardDto:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Новое название доски
+      required:
+        - title
+    CreateColumnDto:
+      type: object
+      properties:
+        title:
+          type: string
+        boardId:
+          type: string
+      required:
+        - title
+        - boardId
+    CreateCardDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        columnId:
+          type: string
+      required:
+        - title
+        - columnId
+    CardResponseDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        title:
+          type: string
+        description:
+          type: object
+          nullable: true
+        columnId:
+          type: string
+        position:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - uuid
+        - title
+        - description
+        - columnId
+        - position
+        - createdAt
+        - updatedAt
+    UpdateCardDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+    MoveCardDto:
+      type: object
+      properties:
+        targetColumnId:
+          type: string
+        newPosition:
+          type: number
+      required:
+        - targetColumnId
+        - newPosition
